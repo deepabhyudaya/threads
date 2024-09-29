@@ -54,7 +54,7 @@ export function NewThreadForm({ user, reply_to, reply_to_author }: Prop) {
             placeholder={
               reply_to
                 ? `Reply to ${reply_to_author?.user_name}...`
-                : 'Naya thread banao...'
+                : 'Create a new thread...'
             }
             value={content}
             onChange={(e) => setContent(e.target.value)}
