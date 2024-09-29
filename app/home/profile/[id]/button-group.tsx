@@ -21,12 +21,12 @@ function MyButtonGroup({ user }: { user: User }) {
   return (
     <div className="grid grid-cols-2 gap-2">
       <Button variant={'secondary'} asChild>
-        <Link href="/customize-profile">Profile accha banao</Link>
+        <Link href="/customize-profile">Edit Profile</Link>
       </Button>
       <ShareDialog
         trigger={
           <Button variant={'secondary'} className="w-full" asChild>
-            <div>khud ko famous kro</div>
+            <div>Share Profile</div>
           </Button>
         }
         url={`${SITE_URL}/home/profile/${user.id}`}
