@@ -8,8 +8,8 @@ import { ThemeProvider } from '@/components/theme-provider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Hangton's Threads",
-  description: 'Threads Clone By Hangton',
+  title: "Deep Threads",
+  description: 'Threads By Abhyudaya',
 };
 
 export default function RootLayout({
