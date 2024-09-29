@@ -116,7 +116,7 @@ export async function Content({ user, sessionUser, defaultTab }: Prop) {
         })}
         {threads.length === 0 ? (
           <p className="italic tracking-wide text-center">
-            Koi thread nahi hai
+            No threads started yet.
           </p>
         ) : (
           <></>
@@ -152,7 +152,7 @@ export async function Content({ user, sessionUser, defaultTab }: Prop) {
         ))}
         {replies.length === 0 ? (
           <p className="italic tracking-wide text-center">
-            Reply bhi nahi kiya aaj takk
+            No Replies yet.
           </p>
         ) : (
           <></>
