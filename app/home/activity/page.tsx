@@ -48,7 +48,7 @@ export default async function ActivityPage() {
             );
           })
         ) : (
-          <p className="italic tracking-wide">Mera life jyada blank hai isse</p>
+          <p className="italic tracking-wide">Nothing to show.</p>
         )}
       </div>
     </div>
