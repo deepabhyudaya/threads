@@ -51,7 +51,7 @@ export default async function SignOutPage() {
         {/* content */}
         <Image src={'/logo.png'} width={135} height={135} alt="" />
         <p className="mt-4 text-2xl font-semibold">
-          sacch mein <span className="text-red-500">Sign Out</span>?
+          Confirm <span className="text-red-500">Sign Out</span>?
         </p>
       </div>
       <SignOutButton />
