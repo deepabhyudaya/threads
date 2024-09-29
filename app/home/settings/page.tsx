@@ -21,7 +21,7 @@ export default function SettingsPage() {
           variant={'outline'}
           asChild
         >
-          <Link href={'/signout'}>Sign out pls</Link>
+          <Link href={'/signout'}>Sign Out</Link>
         </Button>
       </div>
     </div>
