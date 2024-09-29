@@ -23,7 +23,7 @@ export default function RootLayout({
         <body
           className={cn(
             inter.className,
-            'w-screen flex justify-center bg-slate-50'
+            'w-screen flex justify-center bg-black'
           )}
         >
           <main className="h-full w-full max-w-md bg-black overflow-auto md:py-2">
