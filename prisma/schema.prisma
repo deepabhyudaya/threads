@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String       @id @unique
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+  // profiles
+  user_name           String       @unique @default(uuid())
+  display_name        String       @default(uuid())
+  avatar_type         Avatar       @default(Default)
+  avatar_value        String?
+  bio                 String       @default("")
+  isProfileCustomized Boolean      @default(false)
+  // friendship
+  following           Friendship[] @relation("Following")
+  follower            Friendship[] @relation("Follower")
+  // threads
+  Thread              Thread[]
+  Like                Like[]
+}
+
+// avatar type
+enum Avatar {
+  File
+  Url
+  Default
+}
+
+model Friendship {
+  id        String   @id @unique @default(uuid())
+  createdAt DateTime @default(now())
+
+  // activity page read status (for user_to_be_followed)
+  activity_read Boolean @default(false)
+
+  // information
+  user_to_be_followed         User   @relation("Follower", fields: [user_to_be_followed_id], references: [id], onDelete: Cascade)
+  user_to_be_followed_id      String
+  user_requested_to_follow    User   @relation("Following", fields: [user_requested_to_follow_id], references: [id], onDelete: Cascade)
+  user_requested_to_follow_id String
+
+  @@unique([user_requested_to_follow_id, user_to_be_followed_id])
+}
+
+model Thread {
+  id        String   @id @unique @default(uuid())
+  createdAt DateTime @default(now())
+
+  // information
+  author     User    @relation(fields: [author_id], references: [id], onDelete: Cascade)
+  author_id  String
+  attachment String?
+  content    String
+
+  // likes
+  Like Like[]
+
+  // reply-type thread
+  reply_to    Thread?  @relation("Replies", fields: [reply_to_id], references: [id], onDelete: Cascade)
+  reply_to_id String?
+  // replies
+  replied_by  Thread[] @relation("Replies")
+
+  // repost-type thread
+  repost_from    Thread?  @relation("Reposts", fields: [repost_from_id], references: [id], onDelete: Cascade)
+  repost_from_id String?
+  // reposts
+  reposts        Thread[] @relation("Reposts")
+
+  @@unique([repost_from_id, author_id])
+}
+
+model Like {
+  id String @id @unique @default(uuid())
+
+  // thread to be liked
+  thread    Thread @relation(fields: [thread_id], references: [id], onDelete: Cascade)
+  thread_id String
+
+  // user who liked the thread
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id String
+
+  @@unique([thread_id, user_id])
+}
